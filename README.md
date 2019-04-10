@@ -1,25 +1,30 @@
-# docker-abc-rpi
-A Docker container designed to run on a Raspbery Pi, in order to turn it into
-an Bitcoin Cash full node running the ABC version of the client. The blockchain
-is expected to be stored on a 256GB USB flash drive attachd to the RPi.
+# docker-abc
+A BCH full node based on the ABC reference implementation. This repos is forked
+from [docker-abc-rpi](https://github.com/christroutner/docker-abc-rpi), which
+is the same idea but targeted for a Raspberry Pi v3 B+ minicomputer.
+
+This version of that repository is modified to run directly on my computer. I
+occasionally need direct access to a full node when I travel, so installing a
+Docker container I can fire up and sync works well. I don't normally run the full
+node in the background as it takes significant resources.
+
+The blockchain is stored on an auxiliary, slower hard drive for storing such things.
+Keeping the software contained in a Docker container allows me to turn it on and
+off at my leisure.
 
 # Installation and Usage
-It's assumed that you are starting with a fresh installation of Raspbian on
-a Raspberry Pi B+ v3.
-
 - Clone this repository in your home directory with the following command:
-`git clone https://github.com/christroutner/docker-abc-rpi`
-
-- Initialze the RPi by running the `./init-rpi.sh` bash script. This will remove
-a lot of unneeded software, update the OS, install Node.js and Docker.
-
-- Add 2GB of swap space by following [this gist](https://gist.github.com/christroutner/bd76785627925746b7105f13d5f735fc)
-
-- Format and permently mount the 256 GB USB flash drive by following [this gist](https://gist.github.com/christroutner/14351579b71deb01760aeb815d26e07d)
+`git clone https://github.com/christroutner/docker-abc`
 
 - Build the docker container by running the build script: `./build-image.sh`
 
 - Run the container with the run script: `./run-image.sh`
 
 - Check on the status of bitcoind as it syncs to the blockchain:
-`sudo tail /media/usb/debug.log`
+`sudo tail /mnt/data/bitcoin.com/blockchain-data/bch-mainnet-abc-rpi/debug.log`
+
+- Or query the JSON RPC:
+
+`curl --data-binary '{"jsonrpc":"1.0","id":"curltext","method":"getinfo","params":[]}' -H 'content-type:text/plain;' http://bitcoin:password@127.0.0.1:8332/`
+
+`curl --data-binary '{"jsonrpc":"1.0","id":"curltext","method":"getblockchaininfo","params":[]}' -H 'content-type:text/plain;' http://bitcoin:password@127.0.0.1:8332/`
