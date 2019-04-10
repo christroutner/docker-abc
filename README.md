@@ -1,5 +1,5 @@
 # docker-abc
-A BCH full node based on the ABC reference implementation. This repos is forked
+A BCH full node based on the ABC reference implementation. This repo is forked
 from [docker-abc-rpi](https://github.com/christroutner/docker-abc-rpi), which
 is the same idea but targeted for a Raspberry Pi v3 B+ minicomputer.
 
