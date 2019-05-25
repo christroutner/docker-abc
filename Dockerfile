@@ -15,7 +15,7 @@ ENV BITCOIN_DATA /data
 RUN mkdir "$BITCOIN_DATA"
 RUN chown -R bitcoin:bitcoin "$BITCOIN_DATA"
 RUN ln -sfn "$BITCOIN_DATA" /home/bitcoin/.bitcoin
-COPY bitcoin.conf /home/bitcoin/.bitcoin/bitcoin.conf
+COPY bitcoin.conf /home/bitcoin/bitcoin.conf
 RUN chown -h bitcoin:bitcoin /home/bitcoin/.bitcoin
 
 # Install Bitcoin Cash ABC
@@ -29,4 +29,4 @@ VOLUME /data
 EXPOSE 8332 8333 18332 18333
 
 
-CMD ["bitcoind", "-conf=/home/bitcoin/.bitcoin/bitcoin.conf", "-datadir=/data", "-disablewallet"]
+CMD ["bitcoind", "-conf=/home/bitcoin/bitcoin.conf", "-datadir=/data", "-disablewallet"]
