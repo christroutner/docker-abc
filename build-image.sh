@@ -1,2 +1,2 @@
 #!/bin/bash
-docker build -t bitcoind .
+docker build -t bitcoind-hd .
