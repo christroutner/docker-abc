@@ -1,0 +1,11 @@
+bitcoind:
+  build: .
+  dockerfile: Dockerfile
+  container_name: bitcoind
+  ports:
+    - "8332:8332"   # RPC mainnet port
+    - "8333:8333"   # p2p mainnet port
+    - "28332:28332" # ZMQ port
+  volumes:
+    - /mnt/data/bitcoin.com/blockchain-data/bch-mainnet-abc-rpi:/data
+  restart: always
