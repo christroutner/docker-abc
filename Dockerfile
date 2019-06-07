@@ -26,7 +26,7 @@ RUN apt-get install -y bitcoind
 
 # These values will need to be set at run time.
 VOLUME /data
-EXPOSE 18332 18333 38333
+EXPOSE 18332 18333 38332
 
 
 CMD ["bitcoind", "-conf=/home/bitcoin/bitcoin.conf", "-datadir=/data", "-disablewallet"]
