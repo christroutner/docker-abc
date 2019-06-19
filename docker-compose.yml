@@ -1,6 +1,7 @@
 bitcoind-testnet:
-  build: .
-  dockerfile: Dockerfile
+#  build: .
+#  dockerfile: Dockerfile
+  image: bitcoind-testnet
   container_name: bitcoind-testnet
   ports:
     - "18332:18332"   # RPC mainnet port
