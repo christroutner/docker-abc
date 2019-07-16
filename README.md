@@ -47,3 +47,6 @@ file in order to choose where you want the blockchain data stored.
 ## Testnet
 This repository has a `hd-testnet` branch that customizes the files in this
 repository for testnet.
+
+# License
+[MIT License](LICENSE.md)
