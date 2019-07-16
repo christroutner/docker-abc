@@ -15,7 +15,7 @@ ENV BITCOIN_DATA /data
 RUN mkdir "$BITCOIN_DATA"
 RUN chown -R bitcoin:bitcoin "$BITCOIN_DATA"
 RUN ln -sfn "$BITCOIN_DATA" /home/bitcoin/.bitcoin
-COPY bitcoin.conf /home/bitcoin/.bitcoin/bitcoin.conf
+COPY bitcoin.conf /home/bitcoin/bitcoin.conf
 RUN chown -h bitcoin:bitcoin /home/bitcoin/.bitcoin
 
 # Install Bitcoin Cash ABC
@@ -26,7 +26,7 @@ RUN apt-get install -y bitcoind
 
 # These values will need to be set at run time.
 VOLUME /data
-EXPOSE 8332 8333 18332 18333
+EXPOSE 8332 8333 28332
 
 
-CMD ["bitcoind", "-conf=/home/bitcoin/.bitcoin/bitcoin.conf", "-datadir=/data", "-disablewallet"]
+CMD ["bitcoind", "-conf=/home/bitcoin/bitcoin.conf", "-datadir=/data", "-disablewallet"]
