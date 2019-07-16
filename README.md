@@ -20,18 +20,22 @@ Ocean's cloud servers, but should work for any Ubuntnu system.
 shows how to do so on a Ubuntu system.
 
 - Clone this repository in your home directory with the following command:
+
 `git clone https://github.com/christroutner/docker-abc`
 
 - Build the docker container by running the build script:
+
 `docker-compose build`
 
 - Customize the `volumes` setting in the [docker-compose.yml](docker-compose.yml)
 file in order to choose where you want the blockchain data stored.
 
 - Run the container:
+
 `docker-compose up -d`
 
 - Check on the status of bitcoind as it syncs to the blockchain:
+
 `sudo tail ../blockchain-data/bch-mainnet-abc-rpi/debug.log`
 
 - Or query the JSON RPC:
