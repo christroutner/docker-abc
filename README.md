@@ -23,14 +23,16 @@ shows how to do so on a Ubuntu system.
 
 `git clone https://github.com/christroutner/docker-abc`
 
-- Build the docker container by running the build script:
+- Create a two directories in the same directory `docker-abc`. These will be
+used to store configuration data and blockchain data. Call them:
+  - `config`
+  - `blockchain-data`
 
-`docker-compose build`
+- Copy the [run-script.sh](run-script.sh) and [bitcoin.conf](bitcoin.conf) file
+into the `config` directory you just created. Customize the bitcoin.conf file for
+your own full node.
 
-- Customize the `volumes` setting in the [docker-compose.yml](docker-compose.yml)
-file in order to choose where you want the blockchain data stored.
-
-- Run the container:
+- Enter the `docker-abc` directory and start the container with this command:
 
 `docker-compose up -d`
 
@@ -43,6 +45,13 @@ file in order to choose where you want the blockchain data stored.
 `curl --data-binary '{"jsonrpc":"1.0","id":"curltext","method":"getnetworkinfo","params":[]}' -H 'content-type:text/plain;' http://bitcoin:password@127.0.0.1:8332/`
 
 `curl --data-binary '{"jsonrpc":"1.0","id":"curltext","method":"getblockchaininfo","params":[]}' -H 'content-type:text/plain;' http://bitcoin:password@127.0.0.1:8332/`
+
+### Customization
+- Customize the `volumes` setting in the [docker-compose.yml](docker-compose.yml)
+file in order to choose where you want the blockchain data and config files stored.
+
+- Edit the bitcoin.conf file in the `config` directory and restart the container
+if you need to change the configuration settings for the full node.
 
 ## Testnet
 This repository has a `hd-testnet` branch that customizes the files in this
