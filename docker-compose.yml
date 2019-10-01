@@ -1,6 +1,7 @@
 bitcoind-testnet:
   build: .
   dockerfile: Dockerfile
+  #image: christroutner/bitcoind-bch:0.20.2
   container_name: bitcoind-testnet
   ports:
     - "18332:18332"   # RPC mainnet port
@@ -8,4 +9,5 @@ bitcoind-testnet:
     - "38332:38332"   # ZMQ port
   volumes:
     - /mnt/data/bitcoin.com/blockchain-data/bch-testnet-abc:/data
+    - ../config:/home/bitcoin/config
   restart: always

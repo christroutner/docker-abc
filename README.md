@@ -1,30 +1,61 @@
 # docker-abc
-A BCH full node based on the ABC reference implementation. This repo is forked
-from [docker-abc-rpi](https://github.com/christroutner/docker-abc-rpi), which
+A BCH full node based on the ABC reference implementation. This repo has a
+sister repo, [docker-abc-rpi](https://github.com/christroutner/docker-abc-rpi), which
 is the same idea but targeted for a Raspberry Pi v3 B+ minicomputer.
 
-This version of that repository is modified to run directly on my computer. I
-occasionally need direct access to a full node when I travel, so installing a
-Docker container I can fire up and sync works well. I don't normally run the full
-node in the background as it takes significant resources.
-
-The blockchain is stored on an auxiliary, slower hard drive for storing such things.
-Keeping the software contained in a Docker container allows me to turn it on and
-off at my leisure.
+This repository specifically targets the hard drive and micro-server platform
+described at [bchjs.cash](https://bchjs.cash).
 
 # Installation and Usage
+- It's assumed that you are starting with a fresh installation of Ubuntu 18.04
+LTS on a 64-bit machine. It's also assumed that you are installing as
+a [non-root user with sudo privileges](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-16-04).
+
+- Install Docker on the host
+system. [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04) shows
+how to install Docker on a Ubuntu system. It's specifically targeted to Digital
+Ocean's cloud servers, but should work for any Ubuntnu system.
+
+- Install Docker Compose too. [This tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-docker-compose-on-ubuntu-18-04)
+shows how to do so on a Ubuntu system.
+
 - Clone this repository in your home directory with the following command:
+
 `git clone https://github.com/christroutner/docker-abc`
 
-- Build the docker container by running the build script: `./build-image.sh`
+- Create a two directories in the same directory `docker-abc`. These will be
+used to store configuration data and blockchain data. Call them:
+  - `config`
+  - `blockchain-data`
 
-- Run the container with the run script: `./run-image.sh`
+- Copy the [run-script.sh](run-script.sh) and [bitcoin.conf](bitcoin.conf) file
+into the `config` directory you just created. Customize the bitcoin.conf file for
+your own full node.
+
+- Enter the `docker-abc` directory and start the container with this command:
+
+`docker-compose up -d`
 
 - Check on the status of bitcoind as it syncs to the blockchain:
-`sudo tail /mnt/data/bitcoin.com/blockchain-data/bch-mainnet-abc-rpi/debug.log`
+
+`sudo tail ../blockchain-data/bch-mainnet-abc-rpi/debug.log`
 
 - Or query the JSON RPC:
 
-`curl --data-binary '{"jsonrpc":"1.0","id":"curltext","method":"getinfo","params":[]}' -H 'content-type:text/plain;' http://bitcoin:password@127.0.0.1:8332/`
+`curl --data-binary '{"jsonrpc":"1.0","id":"curltext","method":"getnetworkinfo","params":[]}' -H 'content-type:text/plain;' http://bitcoin:password@127.0.0.1:8332/`
 
 `curl --data-binary '{"jsonrpc":"1.0","id":"curltext","method":"getblockchaininfo","params":[]}' -H 'content-type:text/plain;' http://bitcoin:password@127.0.0.1:8332/`
+
+### Customization
+- Customize the `volumes` setting in the [docker-compose.yml](docker-compose.yml)
+file in order to choose where you want the blockchain data and config files stored.
+
+- Edit the bitcoin.conf file in the `config` directory and restart the container
+if you need to change the configuration settings for the full node.
+
+## Testnet
+This repository has a `hd-testnet` branch that customizes the files in this
+repository for testnet.
+
+# License
+[MIT License](LICENSE.md)
