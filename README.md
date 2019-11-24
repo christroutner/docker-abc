@@ -1,7 +1,5 @@
 # docker-abc
-A BCH full node based on the ABC reference implementation. This repo has a
-sister repo, [docker-abc-rpi](https://github.com/christroutner/docker-abc-rpi), which
-is the same idea but targeted for a Raspberry Pi v3 B+ minicomputer.
+A BCH full node based on the ABC reference implementation.
 
 This repository specifically targets the hard drive and micro-server platform
 described at [bchjs.cash](https://bchjs.cash).
@@ -38,7 +36,10 @@ your own full node.
 
 - Check on the status of bitcoind as it syncs to the blockchain:
 
-`sudo tail ../blockchain-data/bch-mainnet-abc-rpi/debug.log`
+`sudo tail ../blockchain-data
+
+
+/debug.log`
 
 - Or query the JSON RPC:
 
