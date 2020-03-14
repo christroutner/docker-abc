@@ -1,7 +1,7 @@
 bitcoind-testnet:
-  build: .
-  dockerfile: Dockerfile
-  #image: christroutner/bitcoind-bch:0.20.2
+  #build: .
+  #dockerfile: Dockerfile
+  image: christroutner/bitcoind-bch-abc-testnet-0.21.1
   container_name: bitcoind-testnet
   ports:
     - "18332:18332"   # RPC mainnet port
