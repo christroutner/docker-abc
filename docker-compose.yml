@@ -8,6 +8,7 @@ bitcoind-testnet:
     - "18333:18333"   # p2p mainnet port
     - "38332:38332"   # ZMQ port
   volumes:
-    - /mnt/data/bitcoin.com/blockchain-data/bch-testnet-abc:/data
+#    - /mnt/data/bitcoin.com/blockchain-data/bch-testnet-abc:/data
+    - ../blockchain-data:/data
     - ../config:/home/bitcoin/config
   restart: always
