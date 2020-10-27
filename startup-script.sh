@@ -15,7 +15,7 @@ stopBitcoind() {
   bitcoin-cli -conf=/data/bitcoin.conf stop
 
   # Wait 5 seconds for bitcoind to do its thing.
-  sleep 5
+  sleep 7
 
   echo "...bitcoind has exited."
 }
