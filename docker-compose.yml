@@ -9,6 +9,6 @@ bitcoind:
     - "28332:28332" # ZMQ port
   volumes:
 #    - ../blockchain-data/bch-mainnet-abc:/data
-    - /mnt/data/bitcoin.com/blockchain-data/bch-mainnet-abc:/data
+    - /mnt/data/blockchain-data/abc-mainnet/abc-blockchain-data:/data
     - ../config:/home/bitcoin/config
   restart: always
