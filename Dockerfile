@@ -28,10 +28,17 @@ RUN ln -sfn "$BITCOIN_DATA" /home/bitcoin/.bitcoin
 #COPY bitcoin.conf /home/bitcoin/bitcoin.conf
 RUN chown -h bitcoin:bitcoin /home/bitcoin/.bitcoin
 
-# Install Bitcoin Cash ABC
-RUN add-apt-repository ppa:bitcoin-abc/ppa
-RUN apt-get update
-RUN apt-get install -y bitcoind
+# Install Bitcoin ABC from the Linux PPA
+# RUN add-apt-repository ppa:bitcoin-abc/ppa
+# RUN apt-get update
+# RUN apt-get install -y bitcoind
+
+# Install Bitcoin ABC from binary release
+ENV TARFILE bitcoin-abc-0.22.8-x86_64-linux-gnu.tar.gz
+ENV TARDIR bitcoin-abc-0.22.8
+RUN wget https://download.bitcoinabc.org/bcha/0.22.8/linux/$TARFILE
+RUN tar -xvf $TARFILE
+RUN mv $TARDIR/bin/* /usr/bin/
 
 # Make persistant config directory
 RUN mkdir /home/bitcoin/config

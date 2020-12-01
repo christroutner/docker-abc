@@ -2,7 +2,7 @@ bitcoind:
   build: .
   dockerfile: Dockerfile
   #image: christroutner/bitcoind-bch-abc-0.21.9
-  container_name: bitcoind
+  container_name: abc-main
   ports:
     - "8332:8332"   # RPC mainnet port
     - "8333:8333"   # p2p mainnet port
